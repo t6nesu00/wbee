@@ -1,7 +1,3 @@
-<head>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="./css/style.css">
-</head>
 
 <nav class="navbar navbar-expand-lg navbar-light">
     <a class="navbar-brand" href="././index.php">Navbar</a>
@@ -29,7 +25,7 @@
             <a class="nav-link" href="login.php">Log in</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">Register</a>
+            <a class="nav-link" href="register.php">Register</a>
         </li>
     </ul>
   </div>

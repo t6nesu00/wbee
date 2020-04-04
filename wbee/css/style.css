@@ -1,5 +1,5 @@
-body {
-    background-color: aqua;
+.container {
+    background-image: url('./img/bgimage.jpg');
 }
 
 footer {
