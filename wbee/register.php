@@ -6,10 +6,9 @@
 
 		// Get data from FORM
 		$email = $_POST['email'];
-		$password= $_POST['password'];
     $password = $_POST['password'];
     $rpassword = $_POST['rpassword'];
-		$userRole = $_POST['userRole'];
+		$role = $_POST['role'];
 
 		if($email == '')
 			$errMsg = 'Give your email address';
@@ -19,18 +18,18 @@
             $errMsg = 'Please confirm the password';
     if($password != $rpassword)
             $errMsg = 'Password did not match';
-		if($userRole == '')
+		if($role == '')
 			$errMsg = 'Who you are, Student? or Teacher?';
 		
         
 
 		if($errMsg == ''){
 			try {
-				$stmt = $connect->prepare('INSERT INTO students (email, password, role) VALUES (:email, :password, :userRole)');
+				$stmt = $connect->prepare('INSERT INTO students (email, password, role) VALUES (:email, :password, :role)');
 				$stmt->execute(array(
 					':email' => $email,
-					':password' => $password,
-					':userRole' => $userRole
+          ':password' => $password,
+					':role' => $role
 					));
 				header('Location: register.php?action=joined');
 				exit;
@@ -84,13 +83,13 @@
               </div>
               <div class="form-group">
                 <div class="form-check">
-                <input class="form-check-input" type="radio" name="userRole" id="exampleRadios1" value="stuents" checked>
+                <input class="form-check-input" type="radio" name="role" id="exampleRadios1" value="students" checked>
                 <label class="form-check-label" for="student-radio">
                   Student
                 </label>
               </div>
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="userRole" id="exampleRadios2" value="teachers">
+                <input class="form-check-input" type="radio" name="role" id="exampleRadios2" value="teachers">
                 <label class="form-check-label" for="teacher-radio">
                     Teacher
                 </label>
@@ -109,5 +108,10 @@
             include('./includes/footer.php');
         ?>
     </footer>
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
 </body>
 </html>

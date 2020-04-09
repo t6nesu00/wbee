@@ -1,5 +1,9 @@
+body {
+    background-color: red;
+}
+
 .container {
-    background-image: url('./img/bgimage.jpg');
+    background-image: url('././img/bgimage.jpg');
 }
 
 footer {
