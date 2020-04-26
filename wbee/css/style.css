@@ -1,6 +1,4 @@
-body {
-    background-color: red;
-}
+
 
 .container {
     background-image: url('././img/bgimage.jpg');
@@ -8,7 +6,7 @@ body {
 
 footer {
     position: fixed;
-    height: 100px;
+    height: 75px;
     bottom: 0;
     width: 100%;
 }

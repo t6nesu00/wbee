@@ -8,40 +8,40 @@
     <link rel="stylesheet" type="text/css" href="./css/style.css">
         
 </head>
-<body>
+<body style="background-color: orange;"> 
 
 <?php include './includes/header.php';?>
     <!-- display error message -->
 
 	<!-- container of the page -->
 	
-	<header class="text-white">
-    <div class="container text-center">
-      <img src="imgs/bgimage.jpg" style="height: auto; width: 100%" alt="sample image">
-      
-    </div>
-  </header>
+    <header class="text-white">
+      <div class="container text-center">
+        <img src="images/bgimage.jpg" style="height: auto; width: 100%" alt="sample image">
+        
+      </div>
+    </header>
 
   
-  <card id="about">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 mx-auto">
-          <h1>Welcome Web Base Examination Systeem</h1>
-          <p class="lead">Online examination system for you on your time at your place.</p> 
-            <strong>Are you ready?</strong>
-          <p>What are you waiting then, login or if you are not registered yet, just 
-            complete the registration quickly.</p>
+    <card id="about">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <h1>Welcome to Web Base Examination Systeem</h1>
+            <p class="lead">Online examination system for you on your time at your place.</p> 
+              <strong>Are you ready?</strong>
+            <p>What are you waiting then, login or if you are not registered yet, just 
+              complete the registration quickly.</p>
+          </div>
         </div>
       </div>
-    </div>
-      
-  </card>  
+        
+    </card>  
 
 	<!-- container of the page -->
-<div class="footer-section">
-	<?php include './includes/footer.php'; ?>
-</div>
+  <div class="footer-section">
+    <?php include './includes/footer.php'; ?>
+  </div>
     
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

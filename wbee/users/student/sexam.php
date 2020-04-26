@@ -14,7 +14,7 @@
 	
 <body>
 	<div class="header-section">
-		<?php include 'theader.php'; ?>
+		<?php include 'sheader.php'; ?>
 	</div>
 	<div class="container-fluid">
 		<div class="row">
@@ -23,8 +23,8 @@
     				<div class="sidebar">
         				<h2>Sidebar</h2>
         				<ul>
-							<li><a href="#"><i class="fas fa-home"></i>Dashboard</a></li>
-							<li><a href="texam.php"><i class="fas fa-diagnoses"></i>Exam</a></li>
+							<li><a href="students.php"><i class="fas fa-home"></i>Dashboard</a></li>
+							<li><a href="sexam.php"><i class="fas fa-diagnoses"></i>Exam</a></li>
 							<li><a href="#"><i class="fas fa-star"></i>Scores</a></li>
         				</ul>
     				</div>
@@ -32,7 +32,7 @@
 			</div>
 			<div class="col-sm-10">
 				<div class="main-container">
-					<h2>This is Dashboard for teachers</h2>
+					<h2>This is Exam section</h2>
 				</div>
 			</div>
 		</div>
