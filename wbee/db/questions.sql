@@ -25,3 +25,11 @@ CREATE TABLE estudents (
     totalques int(255), 
     answercorrect int(255)
 );
+
+-- exam category table --
+
+CREATE TABLE exam_category (
+    id INT(5) NOT NULL auto_increment PRIMARY KEY,
+    category VARCHAR(100),
+    exam_time_in_minutes VARCHAR(5)
+);

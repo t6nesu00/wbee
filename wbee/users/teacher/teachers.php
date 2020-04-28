@@ -33,6 +33,17 @@
 			<div class="col-sm-10">
 				<div class="main-container">
 					<h2>This is Dashboard for teachers</h2>
+					<div class="card text-center">
+					<div class="card-header">
+						Dashboard
+					</div>
+					<div class="card-body">
+						<h2>content here.</h2>
+					</div>
+					<div class="card-footer text-muted">
+						2 days ago
+					</div>
+					</div>
 				</div>
 			</div>
 		</div>

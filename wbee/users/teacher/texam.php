@@ -4,49 +4,36 @@
 		header('Location: ../../login.php');
 ?>
 
-<?php
-	if(isset($_POST['submit'])) {
+<?php 
+ // inserting values in database
+	if(isset($_POST['submit1'])) {
 		$errMsg = '';
 
 		// Get data from FORM
-		$q1 = $_POST['questions'];
-    	$q2 = $_POST['questions'];
-    	$q3 = $_POST['questions'];
-		$q4 = $_POST['questions'];
-		$q5 = $_POST['questions'];
+		$examname = $_POST['examname'];
+    	$examtime = $_POST['examtime'];
+    
 
-		if($q1 == '')
-			$errMsg = 'Submit at least five questions';
-		if($q2 == '')
-			$errMsg = 'Submit at least five questions';
-		if($q3 == '')
-            $errMsg = 'Submit at least five questions';
-		if($q4 == '')
-			$errMsg = 'Submit at least five questions';
-		if($q5 == '')
-			$errMsg = 'Submit at least five questions';
-		
-        
+		if($examname == "")
+			$errMsg = 'Write the name of exam';
+		if($examtime == "")
+			$errMsg = 'Please give exam time in minutes';        
 
-		if($errMsg == ''){
+		if($errMsg == ""){
 			try {
-				$stmt = $connect->prepare('INSERT INTO questionTable (questions, ans_id) VALUES (:q1, :q2, :q3, :q4, :q5)');
+				$stmt = $connect->prepare('INSERT INTO exam_category (category, exam_time_in_minutes) VALUES (:examname, :examtime)');
 				$stmt->execute(array(
-					':email' => $email,
-          ':password' => $password,
-					':role' => $role
+					':examname' => $examname,
+          			':examtime' => $examtime,
 					));
-				header('Location: register.php?action=joined');
+
+				header('Location: texam.php?action=joined');
 				exit;
 			}
 			catch(PDOException $e) {
 				echo $e->getMessage();
 			}
 		}
-	}
-
-	if(isset($_GET['action']) && $_GET['action'] == 'joined') {
-		$errMsg = '<p style="background-color: green"> Registration successful. Now you can <a href="login.php">login</a></p>';
 	}
 ?>
 
@@ -78,34 +65,61 @@
 			</div>
 			<div class="col-9">
 				<h2>Examination section</h2>
-				<form>
-					<div class="form-group">
-						<label for="q1">Subject</label>
-						<input type="text" class="form-control" name="sub-name">
+				<div class="row">
+					<div class="col-6">
+						<div class="card">
+							<div class="card-header">
+								Add exam
+							</div>
+							<div class="card-body">
+								<form name="form1" action="" method="post">
+									<div class="form-group">
+										<label for="exampleInputEmail1">New Exam Category</label>
+										<input type="text" class="form-control" name="examname" placeholder="Add Exam Category">
+									</div>
+									<div class="form-group">
+										<label for="exampleInputPassword1">Exam Time</label>
+										<input type="text" class="form-control" name="examtime" placeholder="Exam Time In Minutes">
+									</div>
+									<input type="submit" name="submit1" value="Add Exam" class="btn btn-success">
+								</form>
+							</div>
+						</div>
 					</div>
-					<div class="form-group">
-						<label for="q1">Question 1</label>
-						<input type="text" class="form-control" name="q1">
+					<div class="col-6">
+						<?php
+						$sql = "SELECT * FROM exam_category";
+						$data = $connect->query($sql);
+						echo '<table class="table table-bordered">
+						<thead>
+							<tr>
+							<th scope="col">#</th>
+							<th scope="col">Exam Name</th>
+							<th scope="col">Exam Time</th>
+							<th scope="col">Edit</th>
+							<th scope="col">Delete</th>
+							</tr>
+						</thead>';
+						
+						foreach($data as $row)
+								{
+									echo ' 
+									<tr>
+										<th scope="row">'.$row["id"].'</th>
+										<td>'.$row["category"].'</td>
+										<td>'.$row["exam_time_in_minutes"].'</td>
+										<td>Edit</td>
+										<td>Delete</td>
+									</tr>';
+								}
+						?>
+						
+						echo </table>';
 					</div>
-					<div class="form-group">
-						<label for="q1">Question 2</label>
-						<input type="text" class="form-control" name="q2">
-					</div>
-					<div class="form-group">
-						<label for="q1">Question 3</label>
-						<input type="text" class="form-control" name="q3">
-					</div>
-					<div class="form-group">
-						<label for="q1">Question 4</label>
-						<input type="text" class="form-control" name="q4">
-					</div>
-					<div class="form-group">
-						<label for="q1">Question 5</label>
-						<input type="text" class="form-control" name="q5">
-					</div>
-					<button type="submit" class="btn btn-primary" name="submit">Submit</button>
-				</form>
-			</div>
+				</div>	
+				
+				
+				
 		</div>
 	</div>
 	<div class="footer-section">
