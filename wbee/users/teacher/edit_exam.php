@@ -1,7 +1,15 @@
 <?php
 	require '../../resources/config.php';
 	if(empty($_SESSION['email']))
-		header('Location: ../../login.php');
+        header('Location: ../../login.php');
+    
+    $id = $_GET["id"];
+    $sql = "SELECT * FROM exam_category WHERE id=$id";
+    $edit = $connect->query($sql);
+    while($row=$edit->fetch(PDO::FETCH_BOTH)){
+        $exam_category =$row["category"];
+        $exam_time = $row["exam_time_in_minutes"];
+    }
 ?>
 
 <?php 
@@ -21,17 +29,17 @@
 
 		if($errMsg == ""){
 			try {
-				$stmt = $connect->prepare('INSERT INTO exam_category (category, exam_time_in_minutes) VALUES (:examname, :examtime)');
+				$stmt = $connect->prepare("UPDATE exam_category SET category=:examname, exam_time_in_minutes=:examtime WHERE id='$id'");
 				$stmt->execute(array(
 					':examname' => $examname,
-          			':examtime' => $examtime,
+                      ':examtime' => $examtime,
 					));
 
-				header('Location: texam.php?action=joined');
+				header('Location: texam.php');
 				exit;
 			}
-			catch(PDOException $e) {
-				echo $e->getMessage();
+			catch(PDOException $errMsg) {
+				echo $errMsg->getMessage();
 			}
 		}
 	}
@@ -64,58 +72,27 @@
 				</div>
 			</div>
 			<div class="col-9">
-				<h2>Examination section</h2>
+				<h3>Examination section</h3>
 				<div class="row">
 					<div class="col-6">
 						<div class="card">
 							<div class="card-header">
-								Add exam
+								<strong>Edit exam</strong>
 							</div>
 							<div class="card-body">
 								<form name="form1" action="" method="post">
 									<div class="form-group">
 										<label for="exampleInputEmail1">New Exam Category</label>
-										<input type="text" class="form-control" name="examname" placeholder="Add Exam Category">
+										<input type="text" class="form-control" name="examname" placeholder="Add Exam Category" value="<?php echo $exam_category; ?>">
 									</div>
 									<div class="form-group">
 										<label for="exampleInputPassword1">Exam Time</label>
-										<input type="text" class="form-control" name="examtime" placeholder="Exam Time In Minutes">
+										<input type="text" class="form-control" name="examtime" placeholder="Exam Time In Minutes" value = "<?php echo $exam_time; ?>">
 									</div>
-									<input type="submit" name="submit1" value="Add Exam" class="btn btn-success">
+									<input type="submit" name="submit1" value="Update Exam" class="btn btn-success">
 								</form>
 							</div>
 						</div>
-					</div>
-					<div class="col-6">
-						<?php
-						$count = 0;
-						$sql = "SELECT * FROM exam_category";
-						$data = $connect->query($sql);
-						echo '<table class="table table-bordered">
-						<thead>
-							<tr>
-							<th scope="col">#</th>
-							<th scope="col">Exam Name</th>
-							<th scope="col">Exam Time</th>
-							<th scope="col">Edit</th>
-							<th scope="col">Delete</th>
-							</tr>
-						</thead>';
-						
-						foreach($data as $row)
-								{
-									$count=$count+1;
-									echo ' 
-									<tr>
-										<th scope="row">'.$count.'</th>
-										<td>'.$row["category"].'</td>
-										<td>'.$row["exam_time_in_minutes"].'</td>
-										<td><a href="edit_exam.php?id='.$row["id"].'">Edit</a></td>
-										<td><a href="delete.php?id='.$row["id"].'">Delete</a></td>
-									</tr>';
-								}
-								echo '</table>';
-						?>
 					</div>
 				</div>	
 		</div>
