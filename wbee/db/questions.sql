@@ -5,9 +5,15 @@ CREATE DATABASE dbwbee;
 -- Creating questionTable for storing the questions --
 
 CREATE TABLE questionTable (
-    id int auto_increment NOT NULL PRIMARY KEY,
-    questions VARCHAR(255),
-    qid int(11)
+    id int(5) auto_increment NOT NULL PRIMARY KEY,
+    question_no VARCHAR(5),
+    question VARCHAR(255),
+    opt1 VARCHAR(100),
+    opt2 VARCHAR(100),
+    opt3 VARCHAR(100),
+    opt4 VARCHAR(100),
+    answer VARCHAR(100),
+    category VARCHAR(100)
 );
 
 -- Creating answers table --

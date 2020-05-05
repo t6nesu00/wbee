@@ -21,12 +21,7 @@
 			<div class="col-sm-2">
 				<div class="wrapper">
     				<div class="sidebar">
-        				<h2>Sidebar</h2>
-        				<ul>
-							<li><a href="#"><i class="fas fa-home"></i>Dashboard</a></li>
-							<li><a href="texam.php"><i class="fas fa-diagnoses"></i>Exam</a></li>
-							<li><a href="#"><i class="fas fa-star"></i>Scores</a></li>
-        				</ul>
+        				<?php include 'tsidebar.php'; ?>
     				</div>
 				</div>
 			</div>

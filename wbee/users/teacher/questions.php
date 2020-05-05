@@ -4,38 +4,6 @@
 		header('Location: ../../login.php');
 ?>
 
-<?php 
- // inserting values in database
-	if(isset($_POST['submit1'])) {
-		$errMsg = '';
-
-		// Get data from FORM
-		$examname = $_POST['examname'];
-    	$examtime = $_POST['examtime'];
-    
-
-		if($examname == "")
-			$errMsg = 'Write the name of exam';
-		if($examtime == "")
-			$errMsg = 'Please give exam time in minutes';        
-
-		if($errMsg == ""){
-			try {
-				$stmt = $connect->prepare('INSERT INTO exam_category (category, exam_time_in_minutes) VALUES (:examname, :examtime)');
-				$stmt->execute(array(
-					':examname' => $examname,
-          			':examtime' => $examtime,
-					));
-
-				header('Location: texam.php?action=joined');
-				exit;
-			}
-			catch(PDOException $e) {
-				echo $e->getMessage();
-			}
-		}
-	}
-?>
 
 <html>
 <head><title>Organization Dashboard</title>
@@ -59,30 +27,12 @@
 				</div>
 			</div>
 			<div class="col-9">
-				<h2>Examination section</h2>
-				<div class="row">
-					<div class="col-6">
-						<div class="card">
-							<div class="card-header">
-								Add exam
-							</div>
-							<div class="card-body">
-								<form name="form1" action="" method="post">
-									<div class="form-group">
-										<label for="exampleInputEmail1">New Exam Category</label>
-										<input type="text" class="form-control" name="examname" placeholder="Add Exam Category">
-									</div>
-									<div class="form-group">
-										<label for="exampleInputPassword1">Exam Time</label>
-										<input type="text" class="form-control" name="examtime" placeholder="Exam Time In Minutes">
-									</div>
-									<input type="submit" name="submit1" value="Add Exam" class="btn btn-success">
-								</form>
-							</div>
-						</div>
-					</div>
-					<div class="col-6">
-						<?php
+            <div class="card">
+                <div class="card-header">
+                    Select the exam first
+                </div>
+                <div class="card-body">
+                <?php
 						$count = 0;
 						$sql = "SELECT * FROM exam_category";
 						$data = $connect->query($sql);
@@ -92,8 +42,7 @@
 							<th scope="col">#</th>
 							<th scope="col">Exam Name</th>
 							<th scope="col">Exam Time</th>
-							<th scope="col">Update</th>
-							<th scope="col">Delete</th>
+							<th scope="col">Select</th>
 							</tr>
 						</thead>';
 						
@@ -105,14 +54,15 @@
 										<th scope="row">'.$count.'</th>
 										<td>'.$row["category"].'</td>
 										<td>'.$row["exam_time_in_minutes"].'</td>
-										<td><a href="edit_exam.php?id='.$row["id"].'">Update</a></td>
-										<td><a href="delete.php?id='.$row["id"].'">Delete</a></td>
+										<td><a href="edit_questions.php?id='.$row["id"].'">Select</a></td>
 									</tr>';
 								}
 								echo '</table>';
 						?>
-					</div>
-				</div>	
+                </div>
+            </div>
+
+					
 		</div>
 	</div>
 	<div class="footer-section">
