@@ -7,7 +7,7 @@
     $id = $_GET["id"];
     $exam_category = '';
     $sql = "SELECT * FROM exam_category WHERE id=$id";
-    $stmt= $connect->query($sql);
+    $stmt = $connect->query($sql);
     while($row=$stmt->fetch(PDO::FETCH_ASSOC)) {
         $exam_category = $row["category"];
     }
@@ -80,10 +80,8 @@
     
                         if(isset($_POST['submit1']))
                         {
-                            while($row=$stmt->fetch(PDO::FETCH_ASSOC)) {
-                                $exam_category = $row["category"];
-                            }
-                                // Get data from FORM
+                            
+                            // Get data from FORM
                             $question = $_POST['question'];
                             $opt1 = $_POST['opt1'];
                             $opt2 = $_POST['opt2'];
@@ -91,26 +89,101 @@
                             $opt4 = $_POST['opt4'];
                             $answer = $_POST['answer'];
 
-                            $count = 0;
-                                try {
-                                    
-                                    $stmt = $connect->prepare('INSERT INTO questionTable VALUES 
-                                    (:count, :question, :opt1, :opt2, :opt3, :opt4, :answer, :exam_category)');
-                                    $stmt->execute(array(
-                                        ':id' => $id
-                                        ));
-                                    header('Location: questions.php');
-                                    exit;
-                                }
-                                catch(PDOException $e) {
-                                    echo $e->getMessage();
-                                }
-                        
+							 $loop = 0;
+								 $count = 0;
+								 
+								 $sql = "SELECT * FROM questionTable WHERE category='$exam_category' ORDER BY id ASC";
+								 $stmt = $connect->query($sql);
+								 $count = $stmt->rowCount();
+
+								 if($count = 0)
+								 {
+
+								 }
+								 else {
+									 while($row = $stmt->fetch())
+									 {
+										 $loop = $loop + 1;
+										 $connect->query("UPDATE questionTable SET question_no='$loop' WHERE id=$row[id]");
+									 }
+								 }
+
+								 $loop = $loop + 1;
+								 $pdoQuery = "INSERT INTO questionTable(question_no, question, opt1, opt2, opt3, opt4, answer, category) 
+								 VALUES ('$loop', :question, :opt1, :opt2, :opt3, :opt4, :answer, '$exam_category')";
+								 $pdoQuery_run = $connect->prepare($pdoQuery);
+								 $pdoQuery_exec = $pdoQuery_run->execute(array(
+									':question' => $question, 
+									':opt1' => $opt1,
+									 ':opt2' => $opt2,
+									 ':opt3' => $opt3,
+									 ':opt4' => $opt4,
+									 ':answer' => $answer
+								 ));
+
+								 if(pdoQuery_run) {
+										echo "Question added successfully.";
+								 } else {
+									 echo "Something wrong, try again.";
+								 }
+								                         
                         }
                     
                     ?>
+	
                 </div>
-			</div>	
+			
+			<div class="card">
+				<div class="card-body">
+				<table class="table table-bordered">
+						<tr>
+							<th>No</th>
+							<th>Question</th>
+							<th>Option 1</th>
+							<th>Option 2</th>
+							<th>Option 3</th>
+							<th>Option 4</th>
+							<th>Edit</th>
+							<th>Delete</th>
+						</tr>
+				
+				
+				<?php 
+
+					$sql = "SELECT * FROM questionTable WHERE category='$exam_category' ORDER BY question_no ASC";
+					$sql_run = $connect->query($sql);
+					while($row=$sql_run->fetch(PDO::FETCH_ASSOC)) 
+					{
+						echo "<tr>";
+						echo "<td>"; echo $row["question_no"]; echo "</td>";
+						echo "<td>"; echo $row["question"]; echo "</td>";
+						echo "<td>"; echo $row["opt1"]; echo "</td>";
+						echo "<td>"; echo $row["opt2"]; echo "</td>";
+						echo "<td>"; echo $row["opt3"]; echo "</td>";
+						echo "<td>"; echo $row["opt4"]; echo "</td>";
+						// Edit option starts
+						echo "<td>"; 	
+							?>
+							<a href="edit_option.php?id=<?php echo $row["id"]; ?>&id1=<?php echo $id; ?>">Edit</a>
+							<?php
+						echo "</td>";
+						// Edit option starts
+
+						// delete option starts
+						echo "<td>"; 
+							?>
+							<a href="delete_option.php?id=<?php echo $row["id"]; ?>&id1=<?php echo $id; ?>">Delete</a>
+							<?php	
+						echo "</td>";
+						// delete option starts
+						echo "</tr>";
+					}
+				?>
+				</table>
+				</div>
+			</div>
+			
+		</div>	
 		</div>
       
 	</div>

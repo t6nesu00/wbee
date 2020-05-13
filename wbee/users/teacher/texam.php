@@ -10,6 +10,7 @@
 		$errMsg = '';
 
 		// Get data from FORM
+	
 		$examname = $_POST['examname'];
     	$examtime = $_POST['examtime'];
     

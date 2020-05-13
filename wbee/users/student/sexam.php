@@ -19,20 +19,20 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-sm-2">
-				<div class="wrapper">
-    				<div class="sidebar">
-        				<h2>Sidebar</h2>
-        				<ul>
-							<li><a href="students.php"><i class="fas fa-home"></i>Dashboard</a></li>
-							<li><a href="sexam.php"><i class="fas fa-diagnoses"></i>Exam</a></li>
-							<li><a href="#"><i class="fas fa-star"></i>Scores</a></li>
-        				</ul>
-    				</div>
-				</div>
+				<?php include 'ssidebar.php'; ?>
 			</div>
 			<div class="col-sm-10">
 				<div class="main-container">
-					<h2>This is Exam section</h2>
+					<!-- Display exam categories -->
+					<?php 
+					 $sql = "SELECT * FROM exam_category";
+					 $stmt = $connect->prepare($sql);
+					 while($row=$stmt->fetch(PDO::FETCH_ASSOC)){
+						 ?>
+						 <input type="text">
+						 <?php
+					 }
+					?>
 				</div>
 			</div>
 		</div>
