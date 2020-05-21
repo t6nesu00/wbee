@@ -23,16 +23,7 @@
 			</div>
 			<div class="col-sm-10">
 				<div class="main-container">
-					<!-- Display exam categories -->
-					<?php 
-					 $sql = "SELECT * FROM exam_category";
-					 $stmt = $connect->prepare($sql);
-					 while($row=$stmt->fetch(PDO::FETCH_ASSOC)){
-						 ?>
-						 <input type="text">
-						 <?php
-					 }
-					?>
+					<h1>dashboard for student</h1>
 				</div>
 			</div>
 		</div>

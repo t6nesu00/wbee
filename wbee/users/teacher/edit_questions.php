@@ -4,7 +4,7 @@
         header('Location: ../../login.php');
     
     // to display exam category name
-    $id = $_GET["id"];
+	$id = $_GET["id"];
     $exam_category = '';
     $sql = "SELECT * FROM exam_category WHERE id=$id";
     $stmt = $connect->query($sql);

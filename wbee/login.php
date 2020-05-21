@@ -1,4 +1,5 @@
 <?php
+	
 	require './resources/config.php';
 
 	if(isset($_POST['login'])) {

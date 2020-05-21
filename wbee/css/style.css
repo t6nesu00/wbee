@@ -1,4 +1,6 @@
-
+* {
+    margin-right: 5px;
+}
 
 .container {
     background-image: url('././img/bgimage.jpg');
