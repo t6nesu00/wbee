@@ -111,8 +111,8 @@
 								 $loop = $loop + 1;
 								 $pdoQuery = "INSERT INTO questionTable(question_no, question, opt1, opt2, opt3, opt4, answer, category) 
 								 VALUES ('$loop', :question, :opt1, :opt2, :opt3, :opt4, :answer, '$exam_category')";
-								 $pdoQuery_run = $connect->prepare($pdoQuery);
-								 $pdoQuery_exec = $pdoQuery_run->execute(array(
+								 $pdo_run = $connect->prepare($pdoQuery);
+								 $pdo_exec = $pdo_run->execute(array(
 									':question' => $question, 
 									':opt1' => $opt1,
 									 ':opt2' => $opt2,
@@ -121,7 +121,7 @@
 									 ':answer' => $answer
 								 ));
 
-								 if(pdoQuery_run) {
+								 if($pdo_run) {
 										echo "Question added successfully.";
 								 } else {
 									 echo "Something wrong, try again.";

@@ -39,3 +39,14 @@ CREATE TABLE exam_category (
     category VARCHAR(100),
     exam_time_in_minutes VARCHAR(5)
 );
+
+-- result table --
+CREATE TABLE exam_result (
+    id int(11) auto_increment NOT NULL PRIMARY KEY,
+    email VARCHAR(255),
+    exam_type VARCHAR(255),
+    total_question VARCHAR(11), 
+    correct_answer VARCHAR(11),
+    wrong_answer VARCHAR(11),
+    exam_time varchar(11)
+);

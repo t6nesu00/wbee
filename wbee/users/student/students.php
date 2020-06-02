@@ -16,24 +16,32 @@
 </div>
 
 <div class="container-fluid">
-<div class="row">
-    <div class="col">
-      <?php include 'ssidebar.php'; ?>
-    </div>
-    <div class="col-sm-9">
-      <div class="container">
-		  <?php 
-		  $sql = "SELECT * FROM exam_category";
-		  $stmt = $connect->query($sql);
-		  while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-			  ?>
-			  <input type="button" class="btn btn-success form-control" value="<?php echo $row["category"]; ?>" style="margin-top: 10px;" onclick="set_exam_session(this.value);">
-			  <?php
-		  } 
-		  ?>
-	  </div>
+    <div class="row">
+        <div class="col">
+            <?php include 'ssidebar.php'; ?>
+        </div>
+        <div class="col-sm-9">
+            <div class="container">
+                <?php 
+                $sql = "SELECT * FROM exam_category";
+                $stmt = $connect->query($sql);
+                while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    ?>
+                    <input type="button" class="btn btn-success form-control" value="<?php echo $row["category"]; ?>" style="margin-top: 10px;" onclick="set_exam_session(this.value);">
+                    <?php
+                } 
+                ?>
+            </div>
+            <br><br>
+            <div class="row">
+                <div class="col-sm-12">
+                <?php include 'instruction.php'; ?>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
 
 <div class="footer">
 	<?php include '../../includes/footer.php'; ?>
@@ -44,11 +52,12 @@
 <script type="text/javascript">
     function set_exam_session(exam_category)
     {
-        var xmlhttp=new XMLHttpRequest();
-        xmlhttp.onreadystatechange=function() {
-            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                window.location = "dashboard.php";
-            }
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            window.location = "dashboard.php";
+      }
+
         };
         xmlhttp.open("GET","../../ajax/set_exam_session.php?exam_category="+ exam_category,true);
         xmlhttp.send(null);
