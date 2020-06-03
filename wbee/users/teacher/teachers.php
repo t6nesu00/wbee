@@ -22,7 +22,6 @@
             <div class="container">
 			<center>
 			<h1>Students Performance</h1>
-
 			</center>
 			
 				<?php 
