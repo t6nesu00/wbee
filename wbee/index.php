@@ -35,8 +35,8 @@
           </div>
         </div>
       </div>
-        
     </card>  
+    <br><br><br>
 
 	<!-- container of the page -->
   <div class="footer-section">
