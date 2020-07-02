@@ -10,11 +10,13 @@
 		$errMsg = '';
 
 		// Get data from FORM
-	
+		$streamName = $_POST['streamName'];
 		$examname = $_POST['examname'];
     	$examtime = $_POST['examtime'];
     
-
+		if($streamName == "") {
+			$errMsg = 'Select one stream';
+		}
 		if($examname == "")
 			$errMsg = 'Write the name of exam';
 		if($examtime == "")
@@ -22,10 +24,11 @@
 
 		if($errMsg == ""){
 			try {
-				$stmt = $connect->prepare('INSERT INTO exam_category (category, exam_time_in_minutes) VALUES (:examname, :examtime)');
+				$stmt = $connect->prepare('INSERT INTO exam_category (sCategory, category, exam_time_in_minutes) VALUES (:streamName, :examname, :examtime)');
 				$stmt->execute(array(
 					':examname' => $examname,
-          			':examtime' => $examtime,
+					  ':examtime' => $examtime,
+					  ':streamName' => $streamName,
 					));
 
 				header('Location: texam.php?action=joined');
@@ -66,12 +69,28 @@
 				<div class="row">
 						<div class="card" style = "background-color: #ffbf00;">
 							<div class="card-header">
-								Add exam
+								<h4>Add new exam</h4>
 							</div>
 							<div class="card-body">
 								<form name="form1" action="" method="post">
 									<div class="form-group">
-										<label for="exampleInputEmail1">New Exam Category</label>
+									<!--Dropdown for stream name fetched from database table-->
+										<label for="catName">Stream/Faculty</label><br>
+										<select name="streamName">
+										 	<option>Select</option>
+											 <?php 
+											 $sql = "SELECT * FROM streams order by streamName ASC";
+											 $sdata = $connect->query($sql);
+												while($row = $sdata->fetch(PDO::FETCH_ASSOC)) {
+													?>
+													<option value="<?php echo $row["id"]; ?>"><?php echo $row["streamName"]; ?></option>
+													<?php
+												}
+											 ?>
+										</select>
+									</div>
+									<div class="form-group">
+										<label for="exampleInputEmail1">Exam Name</label>
 										<input type="text" class="form-control" name="examname" placeholder="Add Exam Category">
 									</div>
 									<div class="form-group">
@@ -113,8 +132,15 @@
 										<td>'.$row["exam_time_in_minutes"].'</td>
 										<td><a href="edit_exam.php?id='.$row["id"].'">Update</a></td>
 										<td><a href="delete.php?id='.$row["id"].'">Delete</a></td>
-										<td><a>Status</a></td>
-										<td><a href="actionUpdate.php?id='.$row["id"].'"><input type="button" onclick="btnFunction()" class="btn btn-success" id="myBtn" value="Enable" name="submit"></a></td>
+										<td id="actionStatus">'.$row["status"].'</td>
+										<td>
+										<form action="" method="post">
+										<select id="dropV" name="status">
+											<option value="1">Enable</option>
+											<option value="0">Disable</a></option>
+										</select>
+										</form>   
+										</td>
 									</tr>';
 								}
 								echo '</table>';
@@ -123,22 +149,11 @@
 				</div>	
 		</div>
 	</div>
+	
 	<div class="footer-section">
 		<?php include '../../includes/footer.php'; ?>
 	</div>
-	<script>
-		function btnFunction () {
-			let elem = document.getElementById("myBtn");
-			if(elem.value == "Enable") {
-				elem.value = "Disable";
-				elem.style.backgroundColor = "red";
-			}
-			else {
-				elem.value = "Enable";
-				elem.style.backgroundColor = "green";
-			}
-		}
-	</script>
+
 	<!-- JS script for bootstrap -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

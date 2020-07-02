@@ -2,6 +2,7 @@
 
 CREATE DATABASE dbwbee;
 
+
 -- Creating questionTable for storing the questions --
 
 CREATE TABLE questionTable (

@@ -42,6 +42,7 @@
 				 else {
 					 echo "<table class='table table-borderdered'>";
 					 echo "<tr>";
+					 echo "<th>"; echo "Student"; echo "<th>";
 					 echo "<th>"; echo "Exam"; echo "<th>";
 					 echo "<th>"; echo "Total Questions"; echo "<th>";
 					 echo "<th>"; echo "Correct Answers"; echo "<th>";
@@ -50,6 +51,7 @@
 					 echo "<tr>";
 					 while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 						echo "<tr>";
+						echo "<td>"; echo $row["email"]; echo "<td>";
 					 	echo "<td>"; echo $row["exam_type"]; echo "<td>";
 					 	echo "<td>"; echo $row["total_question"]; echo "<td>";
 					 	echo "<td>"; echo $row["correct_answer"]; echo "<td>";
