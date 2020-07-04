@@ -7,8 +7,10 @@
     $sql = "SELECT * FROM exam_category WHERE id=$id";
     $edit = $connect->query($sql);
     while($row=$edit->fetch(PDO::FETCH_BOTH)){
+		$sCategory = $row['sCategory'];
         $exam_category =$row["category"];
-        $exam_time = $row["exam_time_in_minutes"];
+		$exam_time = $row["exam_time_in_minutes"];
+		
     }
 ?>
 
@@ -18,8 +20,10 @@
 		$errMsg = '';
 
 		// Get data from FORM
+		$sCategory = $_POST['streamName'];
 		$examname = $_POST['examname'];
-    	$examtime = $_POST['examtime'];
+		$examtime = $_POST['examtime'];
+		$examStatus = $_POST['eStatus'];
     
 
 		if($examname == "")
@@ -29,10 +33,12 @@
 
 		if($errMsg == ""){
 			try {
-				$stmt = $connect->prepare("UPDATE exam_category SET category=:examname, exam_time_in_minutes=:examtime WHERE id='$id'");
+				$stmt = $connect->prepare("UPDATE exam_category SET sCategory=:sCategory, category=:examname, exam_time_in_minutes=:examtime, status=:examStatus WHERE id='$id'");
 				$stmt->execute(array(
 					':examname' => $examname,
-                      ':examtime' => $examtime,
+					  ':examtime' => $examtime,
+					  ':examStatus' => $examStatus,
+					  ':sCategory' => $sCategory,
 					));
 
 				header('Location: texam.php');
@@ -67,7 +73,6 @@
 				</div>
 			</div>
 			<div class="col-9">
-				<h3>Examination section</h3>
 				<div class="row">
 					<div class="col-6">
 						<div class="card">
@@ -76,6 +81,22 @@
 							</div>
 							<div class="card-body">
 								<form name="form1" action="" method="post">
+										<div class="form-group">
+											<label for="facultyName">Stream/Faculty</label><br>
+											<select name="streamName">
+												<option><?php echo $sCategory; ?></option>
+												<?php 
+												$sql = "SELECT * FROM streams order by streamName ASC";
+												$sdata = $connect->query($sql);
+													while($row = $sdata->fetch(PDO::FETCH_ASSOC)) {
+														?>
+														<option value="<?php echo $row["streamName"]; ?>"><?php echo $row["streamName"]; ?></option>
+														<?php
+													}
+												?>
+											</select>
+										</div>
+										
 									<div class="form-group">
 										<label for="exampleInputEmail1">New Exam Category</label>
 										<input type="text" class="form-control" name="examname" placeholder="Add Exam Category" value="<?php echo $exam_category; ?>">
@@ -83,6 +104,13 @@
 									<div class="form-group">
 										<label for="exampleInputPassword1">Exam Time</label>
 										<input type="text" class="form-control" name="examtime" placeholder="Exam Time In Minutes" value = "<?php echo $exam_time; ?>">
+									</div>
+									<div class="form-group">
+										<label for="exampleInput">Exam Status</label>
+										<select name="eStatus" id="updateStatus">
+											<option value="Enable">Enable</option>
+											<option value="Disable">Disable</option>
+										</select>
 									</div>
 									<input type="submit" name="submit1" value="Update Exam" class="btn btn-success">
 								</form>

@@ -23,7 +23,7 @@
         <div class="col-sm-9">
             <div class="container">
                 <?php 
-                $sql = "SELECT * FROM exam_category";
+                $sql = "SELECT * FROM exam_category WHERE status = 'Enable' OR status is NULL";
                 $stmt = $connect->query($sql);
                 while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     ?>

@@ -75,7 +75,7 @@
 								<form name="form1" action="" method="post">
 									<div class="form-group">
 									<!--Dropdown for stream name fetched from database table-->
-										<label for="catName">Stream/Faculty</label><br>
+										<label for="facultyName">Stream/Faculty</label><br>
 										<select name="streamName">
 										 	<option>Select</option>
 											 <?php 
@@ -83,7 +83,7 @@
 											 $sdata = $connect->query($sql);
 												while($row = $sdata->fetch(PDO::FETCH_ASSOC)) {
 													?>
-													<option value="<?php echo $row["id"]; ?>"><?php echo $row["streamName"]; ?></option>
+													<option value="<?php echo $row["streamName"]; ?>"><?php echo $row["streamName"]; ?></option>
 													<?php
 												}
 											 ?>
@@ -104,6 +104,9 @@
 				</div>
 				<br>
 				<!-- Table list of Exam -->
+				<div>
+  					<h6>Disabling exam is possible with update option in table!</h6>
+				</div>
 				<div class="row">
 						<?php
 						$count = 0;
@@ -113,12 +116,12 @@
 						<thead>
 							<tr>
 							<th scope="col">#</th>
+							<th scope="col">Stream</th>
 							<th scope="col">Exam Name</th>
 							<th scope="col">Exam Time</th>
 							<th scope="col">Update</th>
 							<th scope="col">Delete</th>
 							<th scope="col">Status</th>
-							<th scope="col">Action</th>
 							</tr>
 						</thead>';
 						
@@ -128,19 +131,12 @@
 									echo ' 
 									<tr>
 										<th scope="row">'.$count.'</th>
+										<td>'.$row["sCategory"].'</td>
 										<td>'.$row["category"].'</td>
 										<td>'.$row["exam_time_in_minutes"].'</td>
 										<td><a href="edit_exam.php?id='.$row["id"].'">Update</a></td>
 										<td><a href="delete.php?id='.$row["id"].'">Delete</a></td>
 										<td id="actionStatus">'.$row["status"].'</td>
-										<td>
-										<form action="" method="post">
-										<select id="dropV" name="status">
-											<option value="1">Enable</option>
-											<option value="0">Disable</a></option>
-										</select>
-										</form>   
-										</td>
 									</tr>';
 								}
 								echo '</table>';
