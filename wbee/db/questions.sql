@@ -2,6 +2,13 @@
 
 CREATE DATABASE dbwbee;
 
+-- Creating studnets table for storing all users --
+CREATE TABLE students (
+   id int(11) auto_increment NOT NULL PRIMARY KEY,
+   email VARCHAR(255),
+   password VARCHAR(255),
+   role VARCHAR(11)
+);
 
 -- Creating questionTable for storing the questions --
 
@@ -15,22 +22,6 @@ CREATE TABLE questionTable (
     opt4 VARCHAR(100),
     answer VARCHAR(100),
     category VARCHAR(100)
-);
-
--- Creating answers table --
-
-CREATE TABLE answerTable (
-    id int(11) auto_increment not null PRIMARY KEY,
-    answers VARCHAR(255),
-    aid int(11)
-);
-
--- Table for those who attended exam --
-CREATE TABLE estudents (
-    id int(11) auto_increment NOT NULL PRIMARY KEY,
-    emailid VARCHAR(255),
-    totalques int(255), 
-    answercorrect int(255)
 );
 
 -- exam category table --
@@ -50,4 +41,10 @@ CREATE TABLE exam_result (
     correct_answer VARCHAR(11),
     wrong_answer VARCHAR(11),
     exam_time varchar(11)
+);
+
+-- stream table --
+CREATE TABLE streams (
+    id int(3) auto_increment NOT NULL PRIMARY KEY, 
+    streamName varchar(555)
 );

@@ -105,7 +105,7 @@
 				<br>
 				<!-- Table list of Exam -->
 				<div>
-  					<h6>Disabling exam is possible with update option in table!</h6>
+  					<h6 style="color:red;">Disabling exam is possible with update option in table!</h6>
 				</div>
 				<div class="row">
 						<?php

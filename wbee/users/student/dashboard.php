@@ -15,30 +15,107 @@
 	
 <body style="background-color: orange;">
 	<div>
-		<?php include 'theader.php'; ?>
+		<?php include 'sheader.php'; ?>
 	</div>
-	<div class="container-fluid">
+	<div class="container">
 		<div class="row">
-			<div class="col-3">
-				<div class="wrapper">
-    				<div class="sidebar">
-        				<?php include 'tsidebar.php'; ?>
-    				</div>
+			 <div class="col">
+				<div id="currentQuestion" style="float:left;">0</div>
+				<div style="float:left">/</div>
+				<div id="totalQuestion" style="float:left">0</div>
+			 </div>
+		</div>
+             <!-- display questions -->
+		<div class="row" style="margin-top: 20px">
+			<div style="padding: 10px; min-height: 300px; background-color: white; width:100%; height: auto;" id="load_questions">
+			</div>
+			<!-- <div style="min-height: 300px; width=100%; background-color: white" id="load_questions"> </div> -->
+		</div>
+
+			 <!-- display previous and next button -->
+		<div class="row" style="margin-top: 10px">
+			<div class="col" style="min-height: 50px;">
+				<div class="col text-center">
+				 	<input type="button" class="btn btn-warning" value="Previous" onclick="load_previous();">&nbsp;
+					<input type="button" class="btn btn-success" value="next" onclick="load_next();">
 				</div>
 			</div>
-			<div class="col-9">
-            <div class="card">
-                <div class="card-header">
-                    Exam result
-                </div>
-                <div class="card-body">
-                
-                </div>
-            </div>
-
-					
 		</div>
+					
 	</div>
+
+
+	<script>
+		function load_total_question()
+		{
+			var xmlhttp = new XMLHttpRequest();
+        	xmlhttp.onreadystatechange = function() {
+        	if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            document.getElementById("totalQuestion").innerHTML = xmlhttp.responseText;
+      		}
+
+        };
+        xmlhttp.open("GET","../../ajax/load_total_question.php",true);
+        xmlhttp.send(null);
+		}
+
+		var questionNo = "1";
+		load_questions(questionNo);
+
+		function load_questions(questionNo)
+		{
+			document.getElementById("currentQuestion").innerHTML = questionNo;
+			var xmlhttp = new XMLHttpRequest();
+        	xmlhttp.onreadystatechange = function() {
+        	if (xmlhttp.readyState == 4 && xmlhttp.status == 200) 
+				{
+					if(xmlhttp.responseText == "over") 
+					{
+						window.location = "result.php";
+					}
+					else 
+					{
+						document.getElementById("load_questions").innerHTML = xmlhttp.responseText;
+						load_total_question();
+					}
+				}
+
+        };
+        xmlhttp.open("GET","../../ajax/load_questions.php?questionNo="+ questionNo,true);
+        xmlhttp.send(null);
+		}
+
+		function radioclick(radiovalue, questionNo)
+		{
+			var xmlhttp = new XMLHttpRequest();
+        	xmlhttp.onreadystatechange = function() {
+        	if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            
+      		}
+
+        };
+        xmlhttp.open("GET","../../ajax/save_answer.php?questionNo="+ questionNo +"&value1="+radiovalue,true);
+        xmlhttp.send(null);
+		}
+		function load_previous()
+		{
+			if(questionNo == "1"){
+				load_questions(questionNo);
+			}
+			else {
+				questionNo= eval(questionNo) - 1;
+				load_questions(questionNo); 
+			}
+		}
+
+		function load_next()
+		{
+			questionNo= eval(questionNo) + 1;
+			load_questions(questionNo);
+		}
+
+	</script>
+	
 	<div class="footer-section">
 		<?php include '../../includes/footer.php'; ?>
 	</div>

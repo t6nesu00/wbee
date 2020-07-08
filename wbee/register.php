@@ -41,7 +41,7 @@
 	}
 
 	if(isset($_GET['action']) && $_GET['action'] == 'joined') {
-		$errMsg = '<p style="background-color: gray; text-align: center;"> Registration successful. Now you can <a href="login.php">login</a></p>';
+		$errMsg = '<p style="background-color: #f4f0e9; text-align: center;"> Registration successful. Now you can <a href="login.php">login</a></p>';
 	}
 ?>
 
