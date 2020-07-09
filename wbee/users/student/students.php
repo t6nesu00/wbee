@@ -11,6 +11,9 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link rel="stylesheet" href="sstyle.css">
 </head>
+
+
+<body style="background-color: orange;">
 <div>
 	<?php include "sheader.php"; ?>
 </div>
@@ -21,13 +24,13 @@
             <?php include 'ssidebar.php'; ?>
         </div>
         <div class="col-sm-9">
-            <div class="container">
+            <div class="container d-flex align-content-aruond flex-wrap">
                 <?php 
                 $sql = "SELECT * FROM exam_category WHERE status = 'Enable' OR status is NULL";
                 $stmt = $connect->query($sql);
                 while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     ?>
-                    <div class="card" style="width: auto;">
+                    <div class="card" style="width: 250px; background-color: #ffbf00;">
                     <div class="card-body">
                         <h5 class="card-title"><?php echo $row["category"]?></h5>
                         <h6 class="card-subtitle mb-2 text-muted"><?php echo $row["exam_time_in_minutes"]?> minutes</h6>
@@ -44,7 +47,9 @@
             <br><br>
             <div class="row">
                 <div class="col-sm-12">
-                <?php include 'instruction.php'; ?>
+                    <div class="container">
+                        <?php include 'instruction.php'; ?>
+                    </div>
                 </div>
             </div>
         </div>
@@ -73,4 +78,5 @@
     }
 </script>
 
+</body>
 </html>

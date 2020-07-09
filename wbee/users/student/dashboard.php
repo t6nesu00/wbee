@@ -17,6 +17,9 @@
 	<div>
 		<?php include 'sheader.php'; ?>
 	</div>
+	<div>
+		<?php include 'timerHead.php'; ?>
+	</div>
 	<div class="container">
 		<div class="row">
 			 <div class="col">
@@ -37,7 +40,7 @@
 			<div class="col" style="min-height: 50px;">
 				<div class="col text-center">
 				 	<input type="button" class="btn btn-warning" value="Previous" onclick="load_previous();">&nbsp;
-					<input type="button" class="btn btn-success" value="next" onclick="load_next();">
+					<input type="button" class="btn btn-success" id="nextBtn" value="next" onclick="load_next();">
 				</div>
 			</div>
 		</div>
@@ -112,6 +115,9 @@
 		{
 			questionNo= eval(questionNo) + 1;
 			load_questions(questionNo);
+			if(questionNo == load_total_question()) {
+				document.getElementById("nextBtn").innerHTML = "Finish";	
+				}
 		}
 
 	</script>

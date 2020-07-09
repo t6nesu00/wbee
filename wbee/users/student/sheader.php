@@ -33,7 +33,7 @@
   </div>
   </nav>
 
-  <nav aria-label="breadcrumb">
+  <!-- <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
       <li><div id="countdowntimer" style="display: block; padding: 10px 10px;"></div></li>
     </ol>
@@ -57,4 +57,4 @@
 		 xmlhttp.open("GET", "../../ajax/load_timer.php", true);
 		 xmlhttp.send(null);
 	}
-</script>
+</script> -->
