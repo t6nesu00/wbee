@@ -40,7 +40,7 @@
 			<div class="col" style="min-height: 50px;">
 				<div class="col text-center">
 				 	<input type="button" class="btn btn-warning" value="Previous" onclick="load_previous();">&nbsp;
-					<input type="button" class="btn btn-success" id="nextBtn" value="next" onclick="load_next();">
+					<input type="button" class="btn btn-success" id="nextBtn" value="Next" onclick="load_next();">
 				</div>
 			</div>
 		</div>
@@ -115,7 +115,7 @@
 		{
 			questionNo= eval(questionNo) + 1;
 			load_questions(questionNo);
-			if(questionNo == load_total_question()) {
+			if(questionNo == document.getElementById("totalQuestion")) {
 				document.getElementById("nextBtn").innerHTML = "Finish";	
 				}
 		}

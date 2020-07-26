@@ -5,6 +5,7 @@ CREATE DATABASE dbwbee;
 -- Creating studnets table for storing all users --
 CREATE TABLE students (
    id int(11) auto_increment NOT NULL PRIMARY KEY,
+   name VARCHAR(255),
    email VARCHAR(255),
    password VARCHAR(255),
    role VARCHAR(11)
@@ -35,6 +36,7 @@ CREATE TABLE exam_category (
 -- result table --
 CREATE TABLE exam_result (
     id int(11) auto_increment NOT NULL PRIMARY KEY,
+    name VARCHAR(255),
     email VARCHAR(255),
     exam_type VARCHAR(255),
     total_question VARCHAR(11), 

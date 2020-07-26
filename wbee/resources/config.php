@@ -1,6 +1,8 @@
 <?php
 
-session_start();
+//session_start();
+// this helps to remove error message regarding session already started issue
+if(session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 
 //define database
 $dbhost = "localhost";

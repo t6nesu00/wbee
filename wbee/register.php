@@ -4,7 +4,8 @@
 	if(isset($_POST['register'])) {
 		$errMsg = '';
 
-		// Get data from FORM
+    // Get data from FORM
+    $name = $_POST['name'];
 		$email = $_POST['email'];
     $password = $_POST['password'];
     $rpassword = $_POST['rpassword'];
@@ -25,8 +26,9 @@
 
 		if($errMsg == ''){
 			try {
-				$stmt = $connect->prepare('INSERT INTO students (email, password, role) VALUES (:email, :password, :role)');
+				$stmt = $connect->prepare('INSERT INTO students (name, email, password, role) VALUES (:name, :email, :password, :role)');
 				$stmt->execute(array(
+          ':name' => $name,
 					':email' => $email,
           ':password' => $password,
 					':role' => $role
@@ -69,6 +71,10 @@
           <h4>Register</h4>
           <div class="card-text">Fill all the forms to register.</div>
           <form method='post' action="register.php">
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" name="name" placeholder="Give your name">
+              </div>
               <div class="form-group">
                 <label for="emailForReg">Email address</label>
                 <input type="email" class="form-control" id="exampleInputEmail1" name="email" placeholder="Enter email">
