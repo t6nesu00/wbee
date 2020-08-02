@@ -3,13 +3,13 @@
 ?>
 <?php
 $count = 0;
-$sql = "SELECT * FROM exam_result WHERE email = '$_SESSION[email]' ORDER BY id DESC";
+$sql = "SELECT * FROM exam_result WHERE total_question = correct_answer AND correct_answer > 1 ORDER BY id DESC";
 $stmt = $connect->query($sql);
 $count = $stmt->rowCount();
 ?>
 
 <html>
-<head><title>Organization Dashboard</title>
+<head><title>Onine Examination System</title>
 	<!-- css links -->
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -37,7 +37,7 @@ $count = $stmt->rowCount();
 			
 		<div class="card" style = "background-color: #ffbf00;">
                 <div class="card-header">
-                    Students performance
+                    Top Scorer
                 </div>
                 <div class="card-body">
 								
@@ -45,10 +45,10 @@ $count = $stmt->rowCount();
                      <table id="myTable" class="table table-striped table-bordered">  
                           <thead style="background-color: #292a3e; color: white">  
                                <tr>  
-                                    <th>Exam</th>  
+                                    <th>Name of Student</th>
+                                    <th>Exam Name</th>  
                                     <th>Total Questions</th> 
-                                    <th>Correct Answers</th>  
-                                    <th>Wrong Answers</th>  
+                                    <th>Correct Answers</th>    
                                     <th>Date</th>  
                                </tr>  
                           </thead>  
@@ -61,10 +61,10 @@ $count = $stmt->rowCount();
                           {  
                                echo '  
                                <tr>  
+                                    <td>'.$row["name"].'</td>  
                                     <td>'.$row["exam_type"].'</td>  
 									<td>'.$row["total_question"].'</td>  
-									<td>'.$row["correct_answer"].'</td>  
-									<td>'.$row["wrong_answer"].'</td>  
+									<td>'.$row["correct_answer"].'</td>    
 									<td>'.$row["exam_time"].'</td>  
                                </tr>  
                                ';  

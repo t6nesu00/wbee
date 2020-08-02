@@ -3,7 +3,7 @@ session_start();
 date_default_timezone_set('Europe/Helsinki');
 
 if(!isset($_SESSION["end_time"])){
-    echo "00:00:00";
+    echo "Always check the remaining time here";
 }
 else{
     $time1=gmdate("H:i:s", strtotime($_SESSION["end_time"]) - strtotime(date("Y-m-d H:i:s")));

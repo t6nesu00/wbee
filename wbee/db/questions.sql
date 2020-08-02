@@ -1,6 +1,5 @@
--- Create a new databse --
 
-CREATE DATABASE dbwbee;
+-- CREATE DATABASE dbwbee; --
 
 -- Creating studnets table for storing all users --
 CREATE TABLE students (
