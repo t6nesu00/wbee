@@ -9,7 +9,8 @@
 		$email = $_POST['email'];
     $password = $_POST['password'];
     $rpassword = $_POST['rpassword'];
-		$role = $_POST['role'];
+    $role = $_POST['role'];
+    
 
 		if($email == '')
 			$errMsg = 'Give your email address';
@@ -17,20 +18,26 @@
 			$errMsg = 'Enter password';
 		if($rpassword == '')
             $errMsg = 'Please confirm the password';
-    if($password != $rpassword)
-            $errMsg = 'Password did not match';
+    if($password != $rpassword){
+          $errMsg = 'Password did not match';
+      }
+    else{
+      $hash_pass = password_hash($password, PASSWORD_DEFAULT);
+    }
+            
 		if($role == '')
 			$errMsg = 'Who you are, Student? or Teacher?';
 		
         
 
 		if($errMsg == ''){
+      
 			try {
 				$stmt = $connect->prepare('INSERT INTO students (name, email, password, role) VALUES (:name, :email, :password, :role)');
 				$stmt->execute(array(
           ':name' => $name,
 					':email' => $email,
-          ':password' => $password,
+          ':password' => $hash_pass,
 					':role' => $role
 					));
 				header('Location: register.php?action=joined');
@@ -77,7 +84,7 @@
               </div>
               <div class="form-group">
                 <label for="emailForReg">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" name="email" placeholder="Enter email">
+                <input type="email" class="form-control" id="exampleInputEmail1" name="email" placeholder="example@email.com">
               </div>
               <div class="form-group">
                 <label for="password">Password</label>

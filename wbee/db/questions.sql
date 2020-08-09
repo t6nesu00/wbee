@@ -28,8 +28,10 @@ CREATE TABLE questionTable (
 
 CREATE TABLE exam_category (
     id INT(5) NOT NULL auto_increment PRIMARY KEY,
+    sCategory VARCHAR(111),
     category VARCHAR(100),
-    exam_time_in_minutes VARCHAR(5)
+    exam_time_in_minutes VARCHAR(5),
+    status VARCHAR(11)
 );
 
 -- result table --
