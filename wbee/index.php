@@ -6,32 +6,39 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="./css/style.css">
-        
 </head>
-<body style="background-color: orange;"> 
+<body style="background-image: url('images/bgimage.jpg'); backgound-position: center; background-size: cover;
+  position: relative; color: white;"> 
 
 <?php include './includes/header.php';?>
     <!-- display error message -->
 
 	<!-- container of the page -->
-	
-    <header class="text-white">
-      <div class="container text-center">
-        <img src="images/bgimage.jpg" style="height: auto; width: 100%" alt="sample image">
-        
+	<div class="container">
+    <div class="row">
+      <div class="col"></div>
+      <div class="col-6" style="background-color: rgba(220, 220, 220, 0.2); margin-top: 125px;">
+      <h1 style="font-family: Muli, sans-serif; font-weight: bold;">Welcome to Web Based Examination System</h1>
+            <p class="lead">Online examination system for you on your time at your place.</p> 
+              <strong>How the system works?</strong>
+              <ul>
+                <li>Join system with simple registration or just login if you are registered alerady</li>
+                <li>Check the available examination</li>
+                <li>Start exam with just one click</li>
+                <li>Calmly complete all the problems</li>
+                <li>At last you will know your result instantly</li>
+              </ul>
       </div>
+    </div>
+  </div>
+    <header class="text-white">
+      
     </header>
-
-  
     <card id="about">
       <div class="container">
         <div class="row">
           <div class="col-lg-8 mx-auto">
-            <h1>Welcome to Web Base Examination Systeem</h1>
-            <p class="lead">Online examination system for you on your time at your place.</p> 
-              <strong>Are you ready?</strong>
-            <p>What are you waiting then, login or if you are not registered yet, just 
-              complete the registration quickly.</p>
+            
           </div>
         </div>
       </div>
@@ -39,7 +46,7 @@
     <br><br><br>
 
 	<!-- container of the page -->
-  <div class="footer-section">
+  <div class="footer">
     <?php include './includes/footer.php'; ?>
   </div>
     

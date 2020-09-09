@@ -46,6 +46,7 @@ $count = $stmt->rowCount();
                           <thead style="background-color: #292a3e; color: white">  
                                <tr>  
                                     <th>Name of Student</th>
+                                    <th>Email</th>
                                     <th>Exam Name</th>  
                                     <th>Total Questions</th> 
                                     <th>Correct Answers</th>    
@@ -61,7 +62,8 @@ $count = $stmt->rowCount();
                           {  
                                echo '  
                                <tr>  
-                                    <td>'.$row["name"].'</td>  
+                                    <td>'.$row["name"].'</td>
+                                    <td>'.$row["email"].'</td>  
                                     <td>'.$row["exam_type"].'</td>  
 									<td>'.$row["total_question"].'</td>  
 									<td>'.$row["correct_answer"].'</td>    
