@@ -1,6 +1,6 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb" style="margin: 0 0 0 10px;">
-      <li><div id="countdowntimer" style="display: block; padding: 10px 10px; font-weight: bold;"></div></li>
+      <li><div id="countdowntimer" style="display: block; float: right; padding: 10px 10px; font-weight: bold;"></div></li>
     </ol>
 </nav>
 

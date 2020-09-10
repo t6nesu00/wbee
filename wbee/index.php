@@ -7,19 +7,32 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="./css/style.css">
 </head>
-<body style="background-image: url('images/bgimage.jpg'); backgound-position: center; background-size: cover;
-  position: relative; color: white;"> 
-
+<body style="background-color: orange;"> 
 <?php include './includes/header.php';?>
     <!-- display error message -->
 
 	<!-- container of the page -->
 	<div class="container">
-    <div class="row">
+    <div class="row" style="margin-bottom: 0px;">
+      <div class="col"><h1 style="font-family: Muli, sans-serif; font-weight: bold;">Welcome to Web Based Examination System</h1></div>
       <div class="col"></div>
+    </div>
+    <div class="row" style="margin-top: 0px;">
+      <div class="col" style="background-color: rgba(220, 220, 220, 0.2); margin-top: 125px;">
+        <p class="lead">Online examination system for Teachers</p> 
+              <strong>How the system works?</strong>
+              <ul>
+                <li>Join system with simple registration or just login if you are registered alerady</li>
+                <li>Set the exam</li>
+                <li>Set the question paper</li>
+                <li>Edit, delete or update exam</li>
+                <li>Edit, delete or update questions</li>
+                <li>Check students performance</li>
+              </ul>
+
+      </div>
       <div class="col-6" style="background-color: rgba(220, 220, 220, 0.2); margin-top: 125px;">
-      <h1 style="font-family: Muli, sans-serif; font-weight: bold;">Welcome to Web Based Examination System</h1>
-            <p class="lead">Online examination system for you on your time at your place.</p> 
+            <p class="lead">Online examination system for <strong>Students</strong></p> 
               <strong>How the system works?</strong>
               <ul>
                 <li>Join system with simple registration or just login if you are registered alerady</li>
@@ -31,20 +44,6 @@
       </div>
     </div>
   </div>
-    <header class="text-white">
-      
-    </header>
-    <card id="about">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-8 mx-auto">
-            
-          </div>
-        </div>
-      </div>
-    </card>  
-    <br><br><br>
-
 	<!-- container of the page -->
   <div class="footer">
     <?php include './includes/footer.php'; ?>

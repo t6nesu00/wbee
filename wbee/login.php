@@ -78,37 +78,33 @@
         		<div class="card card-body mt-5" style = "background-color: #ffbf00;">
           			<?php if(isset($errMsg)) echo "<font color='red'>" .$errMsg. "</font>"; ?>
           			<h4>Login</h4>
-          			<div class="card-text">Fill all the forms to register.</div>
+          			<div class="card-text">Fill in the form to Login.</div>
 					<form action="" method="post" class="form-signin my-5">
-						<div class="form-label-group">
+						<div class="form-group">
 							<label>Email</label><br>
-							<input type="text" name="email" class="" placeholder="Email" value="<?php if(isset($_POST['email'])) echo $_POST['email'] ?>" autocomplete="off" class="box"/>
+							<input type="text" name="email" class="form-control" value="<?php if(isset($_POST['email'])) echo $_POST['email'] ?>" autocomplete="off" class="box"/>
 						</div>
 							
-						<div class="form-label-group">
+						<div class="form-group">
 							<label>Password</label><br>
-							<input type="password" name="password" value="<?php if(isset($_POST['password'])) echo $_POST['password'] ?>" autocomplete="off" class="box" />
+							<input type="password" name="password" class="form-control" value="<?php if(isset($_POST['password'])) echo $_POST['password'] ?>" autocomplete="off" class="box" />
 						</div>
 								
-						<div class="form-label-group">
-							<label for="role">I am: </label><br>	
-							<input type="radio" name="role" value="students" class="radio-custome" required> &nbsp;Student |
-							<input type="radio" name="role" value="teachers" class="radio-custome" required> &nbsp;Teacher |
+						<div class="form-group">
+							<label for="role">I am: </label> &emsp;	
+							<input type="radio" name="role" value="students" class="radio-custome" required> &nbsp;Student 
+							<input type="radio" name="role" value="teachers" class="radio-custome" required> &nbsp;Teacher 
 						</div>
 								
 						<div class="form-label-group">
 							<input type="submit" name='login' value="Login" class="btn btn-lg btn-block btn-success"/>
 						</div>
-
+                        <br>
 						<div class="back">
-							<a href="index.php">Back to home page</a>
+                            <a href="index.php">Back to home page</a>
+                            <a href="#" style="float:right;">Forget Password!</a>
 						</div>
-						<br>
-
-						<div class="forget">
-							<a href="#">Forget Password!</a>
-						</div>
-						<br />
+						
 					</form>
             	</div>
         	</div>
