@@ -1,8 +1,8 @@
 <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li><div id="countdowntimer" style="display: block; padding: 10px 10px;"></div></li>
+    <ol class="breadcrumb" style="margin: 0 0 0 10px;">
+      <li><div id="countdowntimer" style="display: block; padding: 10px 10px; font-weight: bold;"></div></li>
     </ol>
-  </nav>
+</nav>
 
 <script type="text/javascript">
   setInterval(function() {

@@ -69,10 +69,15 @@
             </div>
                 <?php
                 if(isset($_SESSION["exam_start"])) {
-                
+                    $name = " ";
+                    $sql = "SELECT * FROM students WHERE email = '$_SESSION[email]'";
+                    $stmt = $connect->query($sql);
+                    while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                        $name = $row["name"];
+                    }
                     $date = date("Y-m-d");
                     $pdo = "INSERT INTO exam_result(name, email, exam_type, total_question, correct_answer, wrong_answer, exam_time) 
-                                        VALUES ('$_SESSION[name]', '$_SESSION[email]', '$_SESSION[exam_category]', '$count', '$correct_answer', '$wrong_answer', '$date')";
+                                        VALUES ('$name', '$_SESSION[email]', '$_SESSION[exam_category]', '$count', '$correct_answer', '$wrong_answer', '$date')";
                                         $pdo_run = $connect->prepare($pdo);
                                         $pdo_exec = $pdo_run->execute(array(
                                             ':total_question' => $count, 

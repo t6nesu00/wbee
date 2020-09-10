@@ -85,7 +85,8 @@ while($row=$stmt->fetch(PDO::FETCH_ASSOC))
 						<input type="submit" name="submit1" value="Update Question" class="btn btn-success">
 				</form>
                 </div>
-            </div>
+			</div>
+			</div>
 		</div>
 	</div>
     <!-- Update query starts -->
@@ -128,10 +129,9 @@ while($row=$stmt->fetch(PDO::FETCH_ASSOC))
             
 	}
 	
-
     ?>
     <!-- Update query ends -->
-	<div class="footer-section">
+	<div class="footer">
 		<?php include '../../includes/footer.php'; ?>
 	</div>
 	<!-- JS script for bootstrap -->

@@ -117,10 +117,11 @@
 							</div>
 						</div>
 					</div>
-				</div>	
+				</div>
+			</div>	
 		</div>
 	</div>
-	<div class="footer-section">
+	<div class="footer">
 		<?php include '../../includes/footer.php'; ?>
 	</div>
 	<!-- JS script for bootstrap -->

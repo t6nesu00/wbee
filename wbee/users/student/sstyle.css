@@ -4,6 +4,16 @@
     margin-right: 5px;
 }
 
+/* mouse over link */
+
+.wrapper .sidebar ul li:hover{
+    background: red;
+}
+
+/* selected link */
+a:active {
+    color: darkorange;
+}
 
 .wrapper{
     display: flex;
@@ -32,9 +42,7 @@
     list-style: none;
 }
 
-.wrapper .sidebar ul li:hover{
-    background: yellow;
-}
+
 
 .col-sm-10 .main-container{
     margin-right: 0;
