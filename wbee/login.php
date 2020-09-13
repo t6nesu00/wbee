@@ -23,12 +23,12 @@
 					':email' => $email
 					));
 				$data = $stmt->fetch(PDO::FETCH_ASSOC);
-
 				if($data == false){
 					$errMsg = "User $email not found.";
 				}
 				else {
-					if($password == $data['password'] && $role == $data['role']) {
+					// password_verify(password_from_user, password_from_database)
+					if(password_verify($password, $data['password']) && $role == $data['role']) {
 						$_SESSION['email'] = $data['email'];
 						$_SESSION['password'] = $data['password'];
 						$_SESSION['role'] = $data['role'];

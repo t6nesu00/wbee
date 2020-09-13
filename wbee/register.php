@@ -23,9 +23,10 @@
         }
         if ($password != $rpassword) {
             $errMsg = 'Password did not match';
-        } else {
-            $hash_pass = password_hash($password, PASSWORD_DEFAULT);
-        }
+        } 
+        // else {
+        //     $hash_pass = password_hash($password, PASSWORD_DEFAULT);
+        // }
             
         if ($role == '') {
             $errMsg = 'Who you are, Student? or Teacher?';
@@ -35,7 +36,8 @@
 
         if ($errMsg == '') {
             try {
-                $stmt = $connect->prepare('INSERT INTO students (name, email, password, role) VALUES (:name, :email, :password, :role)');
+              $hash_pass = password_hash($password, PASSWORD_DEFAULT);
+                $stmt = $connect->prepare('INSERT INTO students (name, email, password, role) VALUES (:name, :email, :password,  :role)');
                 $stmt->execute(array(
           ':name' => $name,
                     ':email' => $email,

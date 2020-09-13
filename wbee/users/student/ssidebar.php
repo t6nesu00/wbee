@@ -12,7 +12,6 @@
     <?php
         include '../../resources/config.php'; 
     ?>
-
     <div class="wrapper">
         <div class="sidebar">
             <h5>
