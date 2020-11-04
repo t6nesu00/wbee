@@ -18,7 +18,7 @@
         <?php include "sheader.php"; ?> 
     </div>
     
-    <div class="container-fluid">
+    <div class="container">
 		<div class="card text-center">
 			<div class="card-header">
 			    <h2>Your result</h2>
@@ -58,11 +58,58 @@
                     $stmt = $connect->query("SELECT * FROM questionTable WHERE category = '$_SESSION[exam_category]'");
                     $count = $stmt->rowCount();
                     $wrong_answer = $count - $correct_answer;
-                    echo "<br>"; echo "<br>";
-                    echo "Total question = ".$count;
-                    echo "<br>";
-                    echo "Correct Asnswers= ".$correct_answer; echo "<br>";
-                    echo "Wrong answer = ".$wrong_answer; echo "<br>";
+
+                    // added new code
+                    $percentage = ($correct_answer / $count) * 100;
+                    // allow only upto two decimal number
+                    $percentage_for_display = number_format($percentage, 2, '.', '');
+
+                    function remarkSystem($percentage) {
+                        if($percentage >= 40) return "PASS";
+                        else return "FAIL";
+                    }
+
+                    function gradeSystem($percentage) {
+                        if($percentage >= 80 ) return "A";
+                        elseif($percentage >= 70 and $percentage < 80) return "B";
+                        elseif($percentage >= 60 and $percentage < 70) return "C";
+                        elseif($percentage >= 50 and $percentage < 60) return "D";
+                        elseif($percentage >= 40 and $percentage < 50) return "E";
+                        elseif($percentage < 40) return "F";
+                        else return "NA";
+                    }
+                    $grade = gradeSystem($percentage);
+                    
+                    
+                    $remark = remarkSystem($percentage);
+
+
+                   
+                    //result
+                    echo "<table class='table table-bordered'>";
+                    
+                    echo "<tr>"; 
+                    echo '<th scope="row">'; echo "Total Questions"; echo '</th>';
+                    echo '<td>'; echo "$count"; echo '</td>';
+                    echo '<th scope="row">'; echo "Percentage(%)"; echo '</th>';
+                    echo '<td>'; echo "$percentage_for_display"; echo '</td>';
+                    echo "</tr>";
+
+                    echo "<tr>"; 
+                    echo '<th scope="row">'; echo "Correct Asnwers"; echo '</th>';
+                    echo '<td>'; echo "$correct_answer"; echo '</td>';
+                    echo '<th scope="row">'; echo "Grade"; echo '</th>';
+                    echo '<td>'; echo "$grade"; echo '</td>';
+                    echo "</tr>";
+
+                    echo "<tr>"; 
+                    echo '<th scope="row">'; echo "Wrong Answer"; echo '</th>';
+                    echo '<td>'; echo "$wrong_answer"; echo '</td>';
+                    echo '<th scope="row">'; echo "Remarks"; echo '</th>';
+                    echo '<td>'; echo "$remark"; echo '</td>';
+                    echo "</tr>";
+
+                    echo "</table>";
                     
                     ?>
 		        </div>

@@ -58,8 +58,9 @@
       		}
 
         };
-        xmlhttp.open("GET","../../ajax/load_total_question.php",true);
-        xmlhttp.send(null);
+		xmlhttp.open("GET","../../ajax/load_total_question.php?batch="+document.getElementById("batchid").value,false);
+		xmlhttp.send(null);
+		document.getElementById("state").innerHTML = xmlhttp.responseText;
 		}
 
 		var questionNo = "1";

@@ -9,6 +9,8 @@
         $email = $_POST['email'];
         $password = $_POST['password'];
         $rpassword = $_POST['rpassword'];
+        $streamName = $_POST['sName'];
+        $batch = $_POST['batch'];
         $role = $_POST['role'];
     
 
@@ -37,11 +39,13 @@
         if ($errMsg == '') {
             try {
               $hash_pass = password_hash($password, PASSWORD_DEFAULT);
-                $stmt = $connect->prepare('INSERT INTO students (name, email, password, role) VALUES (:name, :email, :password,  :role)');
+                $stmt = $connect->prepare('INSERT INTO students (name, email, password, stream, batch, role) VALUES (:name, :email, :password, :streamName, :batch, :role)');
                 $stmt->execute(array(
-          ':name' => $name,
+                    ':name' => $name,
                     ':email' => $email,
-          ':password' => $hash_pass,
+                    ':password' => $hash_pass,
+                    ':streamName' => $streamName,
+                    ':batch' => $batch,
                     ':role' => $role
                     ));
                 header('Location: register.php?action=joined');
@@ -83,8 +87,7 @@
                     <?php if (isset($errMsg)) {
             echo "<font color='red'>" .$errMsg. "</font>";
         } ?>
-                    <h4>Register</h4>
-                    <div class="card-text">Fill all the forms to register.</div>
+                    <div class="card-text">Fill all the fields to register.</div>
                     <hr />
                     <form method='post' action="register.php">
                         <div class="form-group">
@@ -105,6 +108,26 @@
                             <input type="password" class="form-control" id="exampleInputEmail1" name="rpassword">
                         </div>
                         <div class="form-group">
+									<!--Dropdown for stream name fetched from database table-->
+									<label for="facultyName">Stream/Faculty</label><br>
+									<select name="sName">
+										<option>Select</option>
+										<?php 
+											$sql = "SELECT * FROM streams order by streamName ASC";
+											$sdata = $connect->query($sql);
+											while($row = $sdata->fetch(PDO::FETCH_ASSOC)) {
+												?>
+												<option value="<?php echo $row["streamName"]; ?>"><?php echo $row["streamName"]; ?></option>
+												<?php
+											}
+										?>
+									</select>
+							</div>
+                        <div class="form-group">
+                            <label for="batch">Batch</label>
+                            <input type="text" class="form-control" id="exampleInputBatch" name="batch" placeholder="e.g 2020">
+                        </div>
+                        <div class="form-group">
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="role" id="student-radio"
                                     value="students" checked>
@@ -119,6 +142,7 @@
                                     Teacher
                                 </label>
                             </div>
+                            
                         </div>
                         <button type="submit" name='register' value="Register"
                             class="btn btn-success btn-block">Register</button>

@@ -21,9 +21,9 @@
         } ?>
         </h5>
             <ul>
-                <a href="students.php"><li><i class="fas fa-home"></i>Dashboard</li></a>
-                <a href="sexam.php"><li><i class="fas fa-diagnoses"></i>Exam</li></a>
-                <a href="scores.php"><li><i class="fas fa-star"></i>Scores</li></a>
+                <a href="students.php"><li><i class="fas fa-home"></i>DASHBOARD</li></a>
+                <a href="sexam.php"><li><i class="fas fa-diagnoses"></i>EXAM</li></a>
+                <a href="scores.php"><li><i class="fas fa-star"></i>SCORES</li></a>
             </ul>
         </div>
     </div>  

@@ -7,8 +7,11 @@ CREATE TABLE students (
    name VARCHAR(255),
    email VARCHAR(255),
    password VARCHAR(255),
-   role VARCHAR(11)
+   role VARCHAR(11),
+   stream VARCHAR(111), 
+   batch VARCHAR(11)
 );
+
 
 -- Creating questionTable for storing the questions --
 

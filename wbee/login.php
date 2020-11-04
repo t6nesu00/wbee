@@ -32,6 +32,7 @@
 						$_SESSION['email'] = $data['email'];
 						$_SESSION['password'] = $data['password'];
 						$_SESSION['role'] = $data['role'];
+						$_SESSION['name'] = $data['name'];
 
 						if($data['role'] == 'students') {
 							header('Location: users/student/students.php');
