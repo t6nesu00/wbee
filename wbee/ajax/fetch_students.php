@@ -14,6 +14,5 @@ if(isset($_POST["selected"]))
         $output .= '<option value="'.$row["name"].'">'.$row["name"].'</option>';
     }
     echo $output;
-
 }
 ?>

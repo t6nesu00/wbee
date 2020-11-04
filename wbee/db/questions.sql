@@ -34,6 +34,8 @@ CREATE TABLE exam_category (
     sCategory VARCHAR(111),
     category VARCHAR(100),
     exam_time_in_minutes VARCHAR(5),
+    batch VARCHAR(111),
+    student VARCHAR(255),
     status VARCHAR(11)
 );
 
@@ -53,4 +55,10 @@ CREATE TABLE exam_result (
 CREATE TABLE streams (
     id int(3) auto_increment NOT NULL PRIMARY KEY, 
     streamName varchar(555)
+);
+
+-- table for batch --
+CREATE TABLE batch (
+    id int(11) auto_increment NOT NULL PRIMARY KEY,
+    batchNo VARCHAR(111)
 );

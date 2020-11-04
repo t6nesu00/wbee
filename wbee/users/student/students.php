@@ -27,7 +27,7 @@
             <div class="container d-flex align-content-aruond flex-wrap">
                 <?php 
 
-                $sql = "SELECT * FROM exam_category WHERE FIND_IN_SET('$_SESSION[name]', student)"; 
+                $sql = "SELECT * FROM exam_category WHERE FIND_IN_SET('$_SESSION[name]', student) AND status = 'Enable'"; 
 
                 // $sql = "SELECT * FROM exam_category WHERE status = 'Enable' OR status is NULL AND FIND_IN_SET('$_SESSION[name]', student)";
                 $stmt = $connect->query($sql);
